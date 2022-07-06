@@ -23,19 +23,15 @@ response.raise_for_status()
 weather_data = response.json()
 
 
-
-list = weather_data["hourly"]
-working_weather_list = []
-
-
-for index in range(1,12):
-    first_dictionary = list[index]  # selects first 12 dictionaries for 12hours
+for index in range(1,13):    
+    id = weather_data["hourly"][index]["weather"][0]["id"]
+       
+    if id < 700:
+        print("It's raining!")
+        break
+  
     
 
 
-for key in first_dictionary.keys():
-    for i in first_dictionary.get(key):
-        print("key{} value{}".format(key,i))
 
-   
-    
+
