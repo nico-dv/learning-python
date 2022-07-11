@@ -1,4 +1,3 @@
-from lib2to3.pgen2 import token
 import requests
 import os
 from dotenv import load_dotenv
@@ -17,13 +16,22 @@ user_params = {
 # response = requests.post(url=pixela_endpoint, json=user_params)
 # print(response.text)
 
-graph_endpoint = f"{pixela_endpoint}/{user_params['token']}/graphs"
+graph_endpoint = f"{pixela_endpoint}/{user_params['username']}/graphs"
 
 graph_config = {
-    "id":"graph1",
+    "id":"graph-test",
     "name":"Coding Graph",
     "unit": "Mins",
     "type":"int",
     "color": "ajisai",
 }
-requests.post(url=graph_endpoint, json=graph_config)
+
+
+headers = {
+    "X-USER-TOKEN": os.getenv("token")
+}
+
+print(graph_endpoint)
+
+response = requests.post(url=graph_endpoint, json=graph_config, headers=headers)
+print(response.text)
