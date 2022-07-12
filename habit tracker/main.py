@@ -31,7 +31,16 @@ headers = {
     "X-USER-TOKEN": os.getenv("token")
 }
 
-print(graph_endpoint)
 
-response = requests.post(url=graph_endpoint, json=graph_config, headers=headers)
+# response = requests.post(url=graph_endpoint, json=graph_config, headers=headers)
+# print(response.text)
+
+pixel_creation_endpoint = f"{pixela_endpoint}/{user_params['username']}/graphs/{graph_config['id']}"
+
+pixel_data = {
+    "date":"20220712",
+    "quantity":"70",
+}
+
+response = requests.post(url=pixel_creation_endpoint, json=pixel_data, headers=headers)
 print(response.text)
